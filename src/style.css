@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'poppinsbold';
+    src: url('fonts/poppins-bold-webfont.woff2') format('woff2'),
+         url('fonts/poppins-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'poppinsregular';
+    src: url('fonts/poppins-regular-webfont.woff2') format('woff2'),
+         url('fonts/poppins-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body{
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    --color-menu: #006A71;
+    --color-display: #48A6A7;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'poppinsregular';
+}
+
+#menu{
+    background-color: var(--color-menu);
+}
+
+#display{
+    background-color: var(--color-display);
+}
