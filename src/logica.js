@@ -3,11 +3,12 @@ import {project} from "./project.js";
 import { format, formatDistance, formatRelative, subDays, add } from 'date-fns'
 
 console.log("¡Bienvenido a la aplicación de listas de tareas!");
-let allProjects = [];
+export let allProjects = [];
 
-function createProject(title="Sin título", dueDate="Sin fecha", description="Sin descripción"){
+export function createProject(title="Sin título", dueDate="Sin fecha", description="Sin descripción"){
     const proyecto = new project(title, dueDate, description);
     allProjects.push(proyecto);
+    return proyecto;
 }
 
 function createToDo(title="Sin título",

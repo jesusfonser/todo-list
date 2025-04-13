@@ -8,8 +8,8 @@
 </head>
 <body>
     <div id="menu"><p>Proyectos</p>
-
-        <button class="addproyecto"><img src="./imgs/plus-circle-outline.svg">Añadir proyecto</button>
+        <div id="menu-projects"></div>
+        <button class="butt-menu" id="addp"><img src="./imgs/plus-circle-outline.svg">Añadir proyecto</button>
 
     </div>
     
@@ -24,5 +24,22 @@
         
         <p>¿A qué esperas? ¡Crea ya tus propios proyectos! ¡¡VENGA!!</p>
     </div>
+    <dialog id="project">
+        <form id="form-add-pro">
+            <div>
+                <label for="name-pro">Nombre del proyecto:</label>
+                <input type="text" id="name-pro">
+            </div>
+            <div>
+                <label for="fecha-fin-pro">Fecha finalización proyecto:</label>
+                <input type="date" id="fecha-fin-pro">
+            </div>
+            <div>  
+                <label for="description-pro">Descripción:</label>
+                <textarea id="description-pro"></textarea>
+            </div>
+                <input type="submit" id="send-np" value="Añadir proyecto">
+        </form>
+    </dialog>
 </body>
 </html>
