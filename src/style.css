@@ -54,15 +54,18 @@ img{
     color: white;
     font-size: 20px;
     padding: 40px 20px;
+    align-items: start;
+}
+
+.addTask{
+    padding: 10px;
+    background-color: white;
+    color: var(--color-menu);
+    border-radius: 5px;
+    border: 2px solid var(--color-menu);
 }
 
 .butt-menu{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-button{
     border:0;
     background-color: var(--color-menu);
     color: white;
@@ -70,6 +73,9 @@ button{
     padding: 15px 5px;
     text-align: left;
     outline: 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .butt-menu:hover{

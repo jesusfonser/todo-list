@@ -27,26 +27,34 @@ function displayProject(q){
     text2display("p", q.description + "<br><br>");
     text2display("p", "Fecha límite: " + q.dueDate + "<br><br>");
     text2display("h2", "Tareas");
-/*
-    const titulo_h2 = document.createElement("h2");
-    titulo_h2.innerText = q.title;
-    display.appendChild(titulo_h2);
 
-    const descripcion_p = document.createElement("p");
-    descripcion_p.innerText = q.description;
-    display.appendChild(descripcion_p);
+//Aquí debería ir un bucle para meter todas las tareas del proyecto
 
-    const fecha_p = document.createElement("p");
-    fecha_p.innerHTML = "Fecha límite: " + q.dueDate + "<br><br>";
-    display.appendChild(fecha_p);
+    const ulTasksDisplay = document.createElement("ul");
 
-    const tareas_h2 = document.createElement("h2");
-    tareas_h2.innerText = "Tareas";
-    display.appendChild(tareas_h2); */
+    q.toDos.forEach((x) =>{
+        const task = document.createElement("li");
+        const pTask = document.createElement("p");
+        
+        pTask.innerHTML = "<b>" + x.title + "</b>: " + x.description + "<br><br>Fecha límite: <i>" + x.dueDate + "</i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prioridad: <i>" + x.priority +"</i>";
+        task.appendChild(pTask);
+        ulTasksDisplay.appendChild(task);
+    })
+
+    display.appendChild(ulTasksDisplay);
+
+    const taskAddButt = document.createElement("button");
+    taskAddButt.setAttribute("class", "addTask");
+    taskAddButt.innerText = "Añadir tarea";
+    display.appendChild(taskAddButt);
 }
 
 function text2display(a, b){
     const toadd = document.createElement(a);
     toadd.innerHTML = b;
     display.appendChild(toadd);
+}
+
+function startShowProj(){
+    
 }
