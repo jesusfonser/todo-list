@@ -26,13 +26,31 @@ body{
     grid-template-columns: 1fr 4fr;
     --color-menu: #006A71;
     --color-display: #48A6A7;
+    --color-low-priority: #8dcd8d;
+    --color-medium-priority: #FFF176;
+    --color-high-priority: rgb(187, 137, 137);
     width: 100vw;
     min-height: 100vh;
     margin: 0;
     font-family: 'poppinsregular';
 }
 
+.ul-tasks-display{
+    padding:0;
+}
 
+.task-display{
+    list-style: none;
+}
+
+ul{
+    margin: 0;
+}
+
+li>p{
+    margin: 0;
+    padding: 10px;
+}
 
 h1{
     margin-bottom: 40px;
@@ -63,6 +81,12 @@ img{
     color: var(--color-menu);
     border-radius: 5px;
     border: 2px solid var(--color-menu);
+}
+
+.addTask:hover{
+    color: #178c94;
+    border-color: #178c94;
+    cursor: pointer;
 }
 
 .butt-menu{
