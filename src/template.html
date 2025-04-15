@@ -41,5 +41,45 @@
                 <input type="submit" id="send-np" value="Añadir proyecto">
         </form>
     </dialog>
+    <dialog id="task-add">
+        <form id="form-add-task">
+            <div>
+                <div>
+                <label for="name-task">Título:</label>
+                <input type="text" id="name-task">
+                </div>
+                
+                <div>
+                <label for="dueDate-task">Fecha finalización:</label>
+                <input type="date" id="dueDate-task">
+                </div>
+                
+                <div>
+                <label for="desc-task">Descripción:</label>
+                <textarea id="desc-task"></textarea>
+                </div>
+            </div>
+            <div>
+                <div>
+                <p>Prioridad:</p>
+                <div id="btns-prio">
+                    <div><label for="baja-prio">Baja</label>
+                        <input type="radio" id="baja-prio" name="priority"></div>
+                    <div><label for="media-prio">Media</label>
+                        <input type="radio" id="media-prio" name="priority"></div>
+                    <div><label for="alta-prio">Alta</label>
+                        <input type="radio" id="alta-prio" name="priority"></div>   
+                </div>
+            </div>
+
+            <div>
+                <label for="notes">Notas:</label>
+                <textarea id="notes"></textarea>
+            </div>
+            </div>
+            <input type="submit" value="Enviar tarea">
+            
+        </form>
+    </dialog>
 </body>
 </html>

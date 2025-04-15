@@ -3,7 +3,7 @@ import iconProject from "./imgs/note-text.svg";
 
 const display = document.getElementById("display");
 const menuProjects = document.getElementById("menu-projects");
-
+const dialog_task = document.getElementById("task-add");
 
 
 export function project2DOM(p){
@@ -59,6 +59,9 @@ function displayProject(q){
     const taskAddButt = document.createElement("button");
     taskAddButt.setAttribute("class", "addTask");
     taskAddButt.innerText = "Añadir tarea";
+
+    taskAddButt.addEventListener("click", () => dialog_task.showModal());
+
     display.appendChild(taskAddButt);
 }
 

@@ -14,7 +14,9 @@ addpro.innerHTML += "Añadir proyecto"; */
 
 const btnNewPro = document.getElementById("send-np");
 const addpro = document.querySelector("#addp");
+
 const dialog_pro = document.querySelector("dialog");
+;
 
 addpro.addEventListener("click", () =>{
     dialog_pro.showModal();
@@ -37,6 +39,8 @@ btnNewPro.addEventListener("click", (e) => {
     project2DOM(createdProject);
     dialog_pro.close();
 })
+
+
 
 //Creación proyecto "Ejemplo" con dos tareas:
 

@@ -19,7 +19,7 @@ function createToDo(title="Sin título",
     proyecto){
 
         const tarea = new toDo(title, description, dueDate, priority, notes);
-        allProjects[proyecto].addToDo(tarea);
+        proyecto.addToDo(tarea);
 
     }
 

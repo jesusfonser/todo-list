@@ -128,6 +128,67 @@ img{
     margin-bottom: 8px;
 }
 
+#form-add-task{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 9fr 1fr;
+    gap: 30px;
+}
+
+#btns-prio{
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    justify-content: center;
+}
+
+#btns-prio > div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 8px;
+}
+
+#btns-prio:nth-child(3){
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#form-add-task label{
+    margin-bottom: 10px;
+}
+
+#btns-prio label,
+#btns-prio input{
+    margin: 0;
+}
+
+#form-add-task > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#form-add-task > div:nth-child(2){
+    justify-content: center;
+    gap: 30px;
+}
+
+#form-add-task > div > div{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#form-add-task > input[type="submit"]{
+    grid-row: 2 / 3;
+    grid-column: 1 / 3;
+    justify-self: center;
+}
+
 input, textarea{
     font-family:Arial, Helvetica, sans-serif;
     background-color: var(--color-menu);
@@ -140,6 +201,8 @@ input{
     border-width: 0 0 1px 0;
     border-color: white;
 }
+
+
 
 input[type='submit']{
     background-color: var(--color-display);
