@@ -37,10 +37,27 @@ body{
 
 .ul-tasks-display{
     padding:0;
+    width: 80%;
 }
 
 .task-display{
     list-style: none;
+    padding: 10px 0 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-display > div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ul-tasks-display + button{
+    margin-top: 30px;
+    padding: 15px;
+    font-weight: bold;
+    border: 2px solid var(--color-menu);
 }
 
 ul{
@@ -80,7 +97,7 @@ img{
     background-color: white;
     color: var(--color-menu);
     border-radius: 5px;
-    border: 2px solid var(--color-menu);
+    border: 0
 }
 
 .addTask:hover{

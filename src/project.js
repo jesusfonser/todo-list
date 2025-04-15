@@ -14,4 +14,6 @@ export class project{
     getToDos(){
         this.toDos.forEach((i)=>console.log(i));
     }
+
+
 }

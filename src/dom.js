@@ -14,16 +14,18 @@ export function project2DOM(p){
     botonP.appendChild(icono);
     botonP.innerHTML += p.title;
     botonP.setAttribute("class", "butt-menu");
-    
 
     const divProject = document.createElement("div");
-    divProject.setAttribute("class", "tareas-menu");
     divProject.appendChild(botonP);
+
+    const divTasks = document.createElement("div");
+    divTasks.setAttribute("class", "tareas-menu");
+    divProject.appendChild(divTasks);
 
     //EventListener para poner toda la info en display
     botonP.addEventListener("click", () =>{ 
         displayProject(p);
-        tasks2menu(p, divProject);
+        tasks2menu(p, divTasks);
     })
 
     menuProjects.appendChild(divProject);
@@ -48,8 +50,30 @@ function displayProject(q){
         task.setAttribute("class", "task-display");
         const pTask = document.createElement("p");
         
-        pTask.innerHTML = "<b>" + x.title + "</b>: " + x.description + "<br><br>Fecha límite: <i>" + x.dueDate + "</i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prioridad: <i>" + x.priority +"</i>";
+        pTask.innerHTML = "<b>" + x.title + "</b> " + "<br><br>Fecha límite: <i>" + x.dueDate + "</i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prioridad: <i>" + x.priority +"</i>";
         task.appendChild(pTask);
+
+        const div_botones_task = document.createElement("div");
+
+        const butt_delete = document.createElement("button");
+        butt_delete.setAttribute("class", "addTask");
+        butt_delete.innerText = "Eliminar";
+        
+        const butt_consult = document.createElement("button");
+        butt_consult.setAttribute("class", "addTask");
+        butt_consult.innerText = "Consultar";
+
+        div_botones_task.appendChild(butt_consult);
+        div_botones_task.appendChild(butt_delete);
+        task.appendChild(div_botones_task);
+
+        butt_delete.addEventListener("click", () =>{
+            const index = q.toDos.indexOf(x);
+            q.toDos.splice(index, 1);
+            task.remove();
+            const menuTasks = document.querySelector("#activo");
+            tasks2menu(q, menuTasks);
+        })
 
         ulTasksDisplay.appendChild(task);
     })
@@ -73,8 +97,11 @@ function text2display(a, b){
 
 function tasks2menu(q, div){
 
-    const limpiaDivs = Array.from(document.querySelectorAll(".task-menu"));
+    const limpiaDivs = Array.from(document.querySelectorAll(".tareas-menu"));
     limpiaDivs.forEach((x) => x.innerHTML = '');
+
+    const desactivaDivs = document.querySelector("#activo");
+    if(desactivaDivs) desactivaDivs.setAttribute("id", "");
 
     const lista = document.createElement("ul");
     lista.setAttribute("class", "task-menu");
@@ -88,5 +115,7 @@ function tasks2menu(q, div){
         li_tarea.appendChild(button_tarea);
         lista.appendChild(li_tarea);
     })
+
+    div.setAttribute("id", "activo");
     div.appendChild(lista);
 }

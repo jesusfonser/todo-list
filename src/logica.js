@@ -24,4 +24,3 @@ function createToDo(title="Sin título",
     }
 
 
-
