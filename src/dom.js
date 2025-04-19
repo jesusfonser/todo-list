@@ -205,7 +205,7 @@ function modifyTask(tarea, p){
             tarea.priority = createdTask.priority;
 
             tasks2menu(p, document.querySelector("#activo"));
-            displayTask(tarea);
+            displayTask(tarea, p);
             dialog_task.close();
     });
 
