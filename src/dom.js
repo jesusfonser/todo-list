@@ -1,9 +1,13 @@
 import {createProject, allProjects} from "./logica.js";
 import iconProject from "./imgs/note-text.svg";
+import {addTaskDialog} from "./index.js";
 
 const display = document.getElementById("display");
 const menuProjects = document.getElementById("menu-projects");
 const dialog_task = document.getElementById("task-add");
+const addtask = document.querySelector("#send-task");
+const parentAddTask = addtask.parentNode;
+
 
 
 export function project2DOM(p){
@@ -85,9 +89,22 @@ function displayProject(q){
     taskAddButt.innerText = "Añadir tarea";
 
     taskAddButt.addEventListener("click", () => dialog_task.showModal());
+   
+    const botonPrime = document.querySelector("#send-task");
+    const botonClon = addtask.cloneNode();
+
+    botonClon.addEventListener("click", (e) =>{
+        e.preventDefault();
+        addTaskDialog(q);
+        displayProject(q);
+        dialog_task.close();
+    })
+
+    parentAddTask.replaceChild(botonClon, botonPrime);
 
     display.appendChild(taskAddButt);
 }
+
 
 function text2display(a, b){
     const toadd = document.createElement(a);
@@ -95,7 +112,7 @@ function text2display(a, b){
     display.appendChild(toadd);
 }
 
-function tasks2menu(q, div){
+export function tasks2menu(q, div){
 
     const limpiaDivs = Array.from(document.querySelectorAll(".tareas-menu"));
     limpiaDivs.forEach((x) => x.innerHTML = '');
@@ -118,4 +135,32 @@ function tasks2menu(q, div){
 
     div.setAttribute("id", "activo");
     div.appendChild(lista);
+}
+
+function addUniqueListener(node, variable) {
+    if (node._myClickHandler) {
+      node.removeEventListener("click", node._myClickHandler);
+    }
+  
+    // Creamos el nuevo handler con la variable del scope
+    const handler = function (e) {
+      console.log("Hola con variable:", variable);
+    };
+  
+    // Guardamos la referencia en el nodo
+    node._myClickHandler = handler;
+  
+    // Y lo agregamos
+    node.addEventListener("click", handler);
+  }
+
+
+export function getSelectedRadio(a){
+    const seleccion = Array.from(a).find(x => x.checked);
+    if (seleccion){
+        return seleccion.value;
+    }
+    else{
+        return undefined;
+    }
 }

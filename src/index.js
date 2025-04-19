@@ -2,7 +2,7 @@ import "./style.css";
 import iconProject from "./imgs/note-text.svg";
 import iconAddProject from "./imgs/plus-circle-outline.svg";
 import {createProject, allProjects} from "./logica.js";
-import {project2DOM} from "./dom.js";
+import {project2DOM, getSelectedRadio, tasks2menu} from "./dom.js";
 import {toDo} from "./todo.js";
 /*
 
@@ -15,12 +15,35 @@ addpro.innerHTML += "Añadir proyecto"; */
 const btnNewPro = document.getElementById("send-np");
 const addpro = document.querySelector("#addp");
 
+
 const dialog_pro = document.querySelector("dialog");
-;
 
 addpro.addEventListener("click", () =>{
     dialog_pro.showModal();
 } );
+
+export function addTaskDialog (p){
+    const prioridad = getSelectedRadio(document.querySelectorAll("input[type='radio']"));
+
+    let values = [document.getElementById("name-task").value,
+        document.getElementById("dueDate-task").value,
+        document.getElementById("desc-task").value,
+        document.getElementById("notes").value,
+        prioridad
+    ];
+
+    values = values.map((x)=>{
+        if(x) return x;
+    });
+
+    let a, b, c, d, e;
+    [a, b, c, d, e] = values;
+    const createdTask = new toDo (a, c, b, e, d);
+    p.addToDo(createdTask);
+    tasks2menu(p, document.querySelector("#activo"));
+    
+}
+
 
 
 btnNewPro.addEventListener("click", (e) => {
