@@ -1,6 +1,7 @@
 import {createProject, allProjects} from "./logica.js";
 import iconProject from "./imgs/note-text.svg";
 import {addTaskDialog} from "./index.js";
+import {toDo} from "./todo.js";
 
 const display = document.getElementById("display");
 const menuProjects = document.getElementById("menu-projects");
@@ -66,6 +67,8 @@ function displayProject(q){
         const butt_consult = document.createElement("button");
         butt_consult.setAttribute("class", "addTask");
         butt_consult.innerText = "Consultar";
+
+        butt_consult.addEventListener("click", () => displayTask(x, q));
 
         div_botones_task.appendChild(butt_consult);
         div_botones_task.appendChild(butt_delete);
@@ -137,22 +140,6 @@ export function tasks2menu(q, div){
     div.appendChild(lista);
 }
 
-function addUniqueListener(node, variable) {
-    if (node._myClickHandler) {
-      node.removeEventListener("click", node._myClickHandler);
-    }
-  
-    // Creamos el nuevo handler con la variable del scope
-    const handler = function (e) {
-      console.log("Hola con variable:", variable);
-    };
-  
-    // Guardamos la referencia en el nodo
-    node._myClickHandler = handler;
-  
-    // Y lo agregamos
-    node.addEventListener("click", handler);
-  }
 
 
 export function getSelectedRadio(a){
@@ -163,4 +150,67 @@ export function getSelectedRadio(a){
     else{
         return undefined;
     }
+}
+
+function displayTask(tarea, p){
+    display.innerHTML = '';
+    
+    text2display("h2", tarea.title);
+    text2display("p", tarea.description);
+    text2display("p", "<b>Fecha de finalización: </b>" + tarea.dueDate);
+    text2display("p", "<b>Prioridad: </b>" + tarea.priority);
+    text2display("h3", "Notas");
+    text2display("p", tarea.notes);
+
+    const botonModify = document.createElement("button");
+    botonModify.setAttribute("class", "addTask");
+    botonModify.innerText = "Modificar tarea";
+
+    botonModify.addEventListener("click", () => modifyTask(tarea, p));
+
+    display.appendChild(botonModify);
+}
+
+function modifyTask(tarea, p){
+    
+    const botonPrimero = document.querySelector("#send-task");
+    const parent = botonPrimero.parentNode;
+    const botonNuevo = botonPrimero.cloneNode();
+
+    botonNuevo.addEventListener("click", (e) =>{
+        e.preventDefault();
+
+
+            const prioridad = getSelectedRadio(document.querySelectorAll("input[type='radio']"));
+        
+            let values = [document.getElementById("name-task").value,
+                document.getElementById("dueDate-task").value,
+                document.getElementById("desc-task").value,
+                document.getElementById("notes").value,
+                prioridad
+            ];
+        
+            values = values.map((x)=>{
+                if(x) return x;
+            });
+        
+            let a, b, c, d, f;
+            [a, b, c, d, f] = values;
+            const createdTask = new toDo (a, c, b, f, d);
+
+            tarea.title = createdTask.title;
+            tarea.description = createdTask.description;
+            tarea.dueDate = createdTask.dueDate;
+            tarea.notes = createdTask.notes;
+            tarea.priority = createdTask.priority;
+
+            tasks2menu(p, document.querySelector("#activo"));
+            displayTask(tarea);
+            dialog_task.close();
+    });
+
+    parent.replaceChild(botonNuevo, botonPrimero);
+
+    dialog_task.showModal();
+
 }
