@@ -4,70 +4,8 @@ import iconAddProject from "./imgs/plus-circle-outline.svg";
 import {createProject, allProjects} from "./logica.js";
 import {project2DOM, getSelectedRadio, tasks2menu} from "./dom.js";
 import {toDo} from "./todo.js";
-/*
 
-const imgadd = document.createElement("img");
-imgadd.src=iconAddProject;
-
-addpro.appendChild(imgadd);
-addpro.innerHTML += "Añadir proyecto"; */
-
-const btnNewPro = document.getElementById("send-np");
-const addpro = document.querySelector("#addp");
-
-
-const dialog_pro = document.querySelector("dialog");
-
-addpro.addEventListener("click", () =>{
-    dialog_pro.showModal();
-} );
-
-export function addTaskDialog (p){
-    const prioridad = getSelectedRadio(document.querySelectorAll("input[type='radio']"));
-
-    let values = [document.getElementById("name-task").value,
-        document.getElementById("dueDate-task").value,
-        document.getElementById("desc-task").value,
-        document.getElementById("notes").value,
-        prioridad
-    ];
-
-    values = values.map((x)=>{
-        if(x) return x;
-    });
-
-    let a, b, c, d, e;
-    [a, b, c, d, e] = values;
-    const createdTask = new toDo (a, c, b, e, d);
-    p.addToDo(createdTask);
-    tasks2menu(p, document.querySelector("#activo"));
-    
-}
-
-
-
-btnNewPro.addEventListener("click", (e) => {
-    e.preventDefault();
-    
-    let values = [document.getElementById("name-pro").value,
-        document.getElementById("fecha-fin-pro").value,
-        document.getElementById("description-pro").value,
-    ];
-    values = values.map((x)=>{
-        if(x) return x;
-    });
-    let a, b, c;
-    [a, b, c] = values;
-    const createdProject = createProject(a, b, c);
-    project2DOM(createdProject);
-    dialog_pro.close();
-})
-
-
-
-//Creación proyecto "Ejemplo" con dos tareas:
-
-const projEjem = createProject("Ejemplo", new Date(), "Este es un proyecto de ejemplo.");
+const projEjem = createProject("Ejemplo", "Sin fecha", "Este es un proyecto de ejemplo.");
 
 const tarea1 = new toDo("Tarea 1",
     "Esta será la primera tarea.",

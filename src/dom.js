@@ -1,6 +1,6 @@
 import {createProject, allProjects} from "./logica.js";
 import iconProject from "./imgs/note-text.svg";
-import {addTaskDialog} from "./index.js";
+import {addTaskDialog} from "./logica.js";
 import {toDo} from "./todo.js";
 
 const display = document.getElementById("display");
@@ -132,6 +132,9 @@ export function tasks2menu(q, div){
 
         button_tarea.innerText=x.title;
         button_tarea.setAttribute("class", "butt-menu");
+
+        button_tarea.addEventListener("click", () => displayTask(x, q));
+
         li_tarea.appendChild(button_tarea);
         lista.appendChild(li_tarea);
     })
@@ -158,7 +161,7 @@ function displayTask(tarea, p){
     text2display("h2", tarea.title);
     text2display("p", tarea.description);
     text2display("p", "<b>Fecha de finalización: </b>" + tarea.dueDate);
-    text2display("p", "<b>Prioridad: </b>" + tarea.priority);
+    text2display("p", "<b>Prioridad: </b>" + tarea.priority + "<br><br>");
     text2display("h3", "Notas");
     text2display("p", tarea.notes);
 
