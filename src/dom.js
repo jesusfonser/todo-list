@@ -1,4 +1,4 @@
-import {createProject, allProjects} from "./logica.js";
+import {createProject, allProjects, save2LocalStorage} from "./logica.js";
 import iconProject from "./imgs/note-text.svg";
 import {addTaskDialog} from "./logica.js";
 import {toDo} from "./todo.js";
@@ -80,6 +80,7 @@ function displayProject(q){
             task.remove();
             const menuTasks = document.querySelector("#activo");
             tasks2menu(q, menuTasks);
+            save2LocalStorage();
         })
 
         ulTasksDisplay.appendChild(task);
@@ -210,10 +211,11 @@ function modifyTask(tarea, p){
             tasks2menu(p, document.querySelector("#activo"));
             displayTask(tarea, p);
             dialog_task.close();
+            save2LocalStorage();
     });
 
     parent.replaceChild(botonNuevo, botonPrimero);
 
     dialog_task.showModal();
-
+    
 }

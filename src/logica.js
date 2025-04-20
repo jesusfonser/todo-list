@@ -20,6 +20,7 @@ addpro.addEventListener("click", () =>{
 export function createProject(title="Sin título", dueDate="Sin fecha", description="Sin descripción"){
     const proyecto = new project(title, dueDate, description);
     allProjects.push(proyecto);
+    
     return proyecto;
 }
 
@@ -39,6 +40,7 @@ btnNewPro.addEventListener("click", (e) => {
     const createdProject = createProject(a, b, c);
     project2DOM(createdProject);
     dialog_pro.close();
+    save2LocalStorage();
 })
 
 export function addTaskDialog (p){
@@ -60,5 +62,29 @@ export function addTaskDialog (p){
     const createdTask = new toDo (a, c, b, e, d);
     p.addToDo(createdTask);
     tasks2menu(p, document.querySelector("#activo"));
+    save2LocalStorage();
 }
 
+export function save2LocalStorage(){
+    const proyectos = allProjects.map((x) => {
+        delete x.addtoDo;
+        return x;
+    })
+
+    console.log(proyectos)
+    localStorage.setItem("proyectos", JSON.stringify(proyectos));
+}
+
+export function loadLocalStorage(){
+    let proyectos = JSON.parse(localStorage.getItem("proyectos"));
+
+    proyectos = proyectos.map((x) => {
+        x.addToDo = (todo) => {
+                x.toDos.push(todo);
+            }
+        return x;
+        }
+    )
+
+    allProjects = proyectos;
+}

@@ -1,7 +1,7 @@
 import "./style.css";
 import iconProject from "./imgs/note-text.svg";
 import iconAddProject from "./imgs/plus-circle-outline.svg";
-import {createProject, allProjects} from "./logica.js";
+import {createProject, allProjects, loadLocalStorage} from "./logica.js";
 import {project2DOM, getSelectedRadio, tasks2menu} from "./dom.js";
 import {toDo} from "./todo.js";
 
@@ -21,6 +21,10 @@ const tarea2 = new toDo("Tarea 2",
 
 projEjem.addToDo(tarea1);
 projEjem.addToDo(tarea2);
+
+if (localStorage.getItem("proyectos")){
+    loadLocalStorage();
+}
 
 //Bucle inicial para mostrar todos los proyectos en menu
 
